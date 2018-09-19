@@ -7,12 +7,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Controller {
 	public static void main(String[] args) throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Set<Poker> pokers=new HashSet<>();
+		
 		Poker C=new Poker(1);
 		Poker P=new Poker(2);
 		Poker R=new Poker(3);
@@ -33,9 +35,43 @@ public class Controller {
 					String strSuit=showName(value.getType(),0);
 					String strNum=showName(value.getId(),1);
 					System.out.println(strSuit+strNum);
+					
 				}
 			}
 		}
+		System.out.println("按回车键洗牌!!!");
+		Scanner scanner=new Scanner(System.in);
+		scanner.nextLine();
+		Set<Card> set=new HashSet<>();
+		//set.add(R.getA());
+		for(int i=0;i<poker.length;i++){
+			set.add(poker[i].getA());
+			set.add(poker[i].getId2());
+			set.add(poker[i].getId3());
+			set.add(poker[i].getId4());
+			set.add(poker[i].getId5());
+			set.add(poker[i].getId6());
+			set.add(poker[i].getId7());
+			set.add(poker[i].getId8());
+			set.add(poker[i].getId9());
+			set.add(poker[i].getId10());
+			set.add(poker[i].getJ());
+			set.add(poker[i].getQ());
+			set.add(poker[i].getK());
+		}
+		
+		//rush
+		Iterator<Card>it=set.iterator();
+		Card card=null;
+		while(it.hasNext()){
+			card=it.next();
+			Integer id=card.getId();
+			Integer type=card.getType();
+			System.out.println(showName(type, 0)+showName(id, 1));
+		}
+		
+		System.out.println("洗牌成功!!!");
+		
 	}
 	
 	// 显示牌的名称
